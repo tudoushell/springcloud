@@ -15,10 +15,14 @@ eureka:
   client:
     register-with-eureka: true
     #是否从EurekaServer抓取自己的注册信息，默认为true。单点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
-    fetch-registry: false
+    #开启这个才可以从DiscoveryClient中获取信息(服务发现)
+    fetch-registry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka #集群
       #defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: payment8001 #主机名称
+    prefer-ip-address: true  #访问路径显示Ip
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
