@@ -1,4 +1,4 @@
-package com.elliot.cloud.Controller;
+package com.elliot.cloud.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
