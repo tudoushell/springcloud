@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/payment")
 public class PaymentController {
@@ -14,6 +16,6 @@ public class PaymentController {
 
   @GetMapping("/zk")
   public String  paymentZK() {
-    return "springcloud with zookeeper: " + port;
+    return "springcloud with zookeeper: " + port + " " + UUID.randomUUID();
   }
 }
