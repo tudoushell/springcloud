@@ -45,4 +45,9 @@ public class PaymentController {
     }
   }
 
+  @GetMapping("/load-balance")
+  public String getPayment(){
+    return serverPort;
+  }
+
 }
