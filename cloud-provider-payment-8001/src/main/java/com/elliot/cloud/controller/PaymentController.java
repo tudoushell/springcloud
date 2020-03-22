@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/payment")
@@ -68,6 +69,20 @@ public class PaymentController {
 
   @GetMapping("/load-balance")
   public String getPayment(){
+    return serverPort;
+  }
+
+  /**
+   * 用于测试openfeign超时控制，feign默认1秒超时
+   * @return
+   */
+  @GetMapping("/feign/timeout")
+  public String feignTimeout() {
+    try {
+      TimeUnit.SECONDS.sleep(3);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     return serverPort;
   }
 

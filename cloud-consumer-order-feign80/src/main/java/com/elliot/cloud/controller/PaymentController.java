@@ -22,4 +22,9 @@ public class PaymentController {
     return paymentFeignService.getPayment(id);
   }
 
+  @GetMapping("/feign/timeout")
+  public String feignTimeout() {
+    return paymentFeignService.feignTimeout();
+  }
+
 }
