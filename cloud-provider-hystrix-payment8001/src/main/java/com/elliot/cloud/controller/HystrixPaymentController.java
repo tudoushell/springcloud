@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/payment/hystrix")
@@ -27,12 +28,12 @@ public class HystrixPaymentController {
   })
   @GetMapping("/{id}")
   public String paymentInfo(@PathVariable("id") Long id) {
-    int i = 10 / 0;
-//    try {
-//      TimeUnit.SECONDS.sleep(5);
-//    } catch (InterruptedException e) {
-//      e.printStackTrace();
-//    }
+//    int i = 10 / 0;
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     return hystrixPaymentService.paymentInfo(id);
   }
 
