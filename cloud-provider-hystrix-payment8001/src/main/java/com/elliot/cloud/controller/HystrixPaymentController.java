@@ -1,8 +1,8 @@
 package com.elliot.cloud.controller;
 
 import com.elliot.cloud.service.HystrixPaymentService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,10 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/payment/hystrix")
+/**
+ * 用于配置全局服务降级
+ */
+@DefaultProperties(defaultFallback = "globalErrorMsg")
 public class HystrixPaymentController {
   @Resource
   private HystrixPaymentService hystrixPaymentService;
@@ -23,12 +27,13 @@ public class HystrixPaymentController {
    * @param id
    * @return
    */
-  @HystrixCommand(fallbackMethod = "paymentInfoHandler", commandProperties = {
-          @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
-  })
+//  @HystrixCommand(fallbackMethod = "paymentInfoHandler", commandProperties = {
+//          @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+//  })
+  @HystrixCommand
   @GetMapping("/{id}")
   public String paymentInfo(@PathVariable("id") Long id) {
-//    int i = 10 / 0;
+    int i = 10 / 0;
     try {
       TimeUnit.SECONDS.sleep(1);
     } catch (InterruptedException e) {
@@ -48,6 +53,10 @@ public class HystrixPaymentController {
    */
   public String paymentInfoHandler(Long id) {
     return Thread.currentThread().getName() + " 服务超时或出错，请稍后重试 " + id;
+  }
+
+  public String globalErrorMsg() {
+    return "服务器繁忙或出错";
   }
   
 }
