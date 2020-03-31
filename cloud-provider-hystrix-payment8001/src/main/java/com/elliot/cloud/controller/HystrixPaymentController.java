@@ -22,6 +22,16 @@ public class HystrixPaymentController {
   private HystrixPaymentService hystrixPaymentService;
 
   /**
+   * 服务熔断测试
+   * @param id
+   * @return
+   */
+  @GetMapping("/circuit-break/{id}")
+  public String circuitBreaker(@PathVariable("id") Integer id) {
+    return hystrixPaymentService.paymentCircuitBreaker(id);
+  }
+
+  /**
    *
    * 当程序运行超过3秒或者程序出错时服务降级fallback
    * @param id
