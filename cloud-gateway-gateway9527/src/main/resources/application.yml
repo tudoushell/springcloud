@@ -12,6 +12,8 @@ spring:
           uri: lb://CLOUD-PAYMENT-SERVICE #动态路由配置
           predicates:
             - Path=/api/payment/**   #断言，路径相匹配进行路由
+            #断言配置参考 https://cloud.spring.io/spring-cloud-static/spring-cloud-gateway/2.2.2.RELEASE/reference/html/#gateway-request-predicates-factories
+            - After=2020-04-05T14:30:57.711+08:00[Asia/Shanghai]
       discovery:
         locator:
           enabled: true       #开启从注册中心动态创建路由功能，利用微服务名进行路由
