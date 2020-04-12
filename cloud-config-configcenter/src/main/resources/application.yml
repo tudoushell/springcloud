@@ -28,6 +28,8 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka #集群
 
 #rabbitmq相关配置，暴露bus刷新配置端点
+#如只需要某个config client 更新则访问(POST) http://localhost:8877/actuator/bus-refresh/cloud-config-center:8888
+#如需要配置全部更新，则访问http://localhost:8877/actuator/bus-refresh
 management:
   endpoints:
     web:
