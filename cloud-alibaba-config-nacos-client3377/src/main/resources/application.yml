@@ -3,4 +3,5 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: dev   #开发环境
+

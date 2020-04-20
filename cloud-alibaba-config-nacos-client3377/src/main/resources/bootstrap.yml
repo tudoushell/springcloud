@@ -8,7 +8,8 @@ spring:
       config:
         server-addr: localhost:8848  #nacos 配置中心地址
         file-extension: yaml
-
+        #group: GROUP_DEV            #配置中心的分组
+        namespace: e0611729-ceef-4037-9aef-4ae1fd0782f6
 
 # ${prefix}-${spring.profile.active}.${file-extension}
 # prefix 默认为 spring.application.name 的值，也可以通过配置项 spring.cloud.nacos.config.prefix来配置。
