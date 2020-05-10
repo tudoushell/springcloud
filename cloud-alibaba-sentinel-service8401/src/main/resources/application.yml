@@ -7,7 +7,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.10:8081
+        server-addr: 192.168.1.5:8081
     sentinel:
       transport:
         #配置sentinel dashboard 地址
