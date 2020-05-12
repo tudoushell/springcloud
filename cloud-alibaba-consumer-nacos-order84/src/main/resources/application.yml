@@ -14,6 +14,14 @@ spring:
         dashboard: localhost:8080
         #默认端口，假如被占用会自动从8719开始依次扫描，直到端口没有被占用
         port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 192.168.1.5:8081
+            dataId: cloud-nacos-sentinel-consumer
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
 
 
 management:

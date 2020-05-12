@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.elliot.cloud.service.PaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,7 +32,7 @@ public class CircleBreakerController {
 //  @SentinelResource(value = "getInfo", fallback = "errorPage")
 //  @SentinelResource(value = "getInfo", blockHandler = "errorSentinelPage")
   @SentinelResource(value = "getInfo", fallback = "errorPage", blockHandler = "errorSentinelPage")
-  public String getInfo(Integer id) {
+  public String getInfo(@RequestParam Integer id) {
     if (id == 4) {
       throw new RuntimeException("参数不存在!");
     } else if (id == 5) {
