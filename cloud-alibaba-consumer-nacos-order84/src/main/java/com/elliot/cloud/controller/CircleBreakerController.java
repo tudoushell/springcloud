@@ -2,6 +2,7 @@ package com.elliot.cloud.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.elliot.cloud.service.PaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -15,6 +16,9 @@ public class CircleBreakerController {
 
   @Resource
   private RestTemplate restTemplate;
+
+  @Resource
+  private PaymentService paymentService;
 
   /**
    *  fallback 只负责业务异常
@@ -34,6 +38,11 @@ public class CircleBreakerController {
       throw new NullPointerException("空指针异常");
     }
     return restTemplate.getForObject(SERVER_URL + "/api/payment", String.class);
+  }
+
+  @GetMapping("/feign/getInfo")
+  public String testFeign() {
+    return paymentService.getPayment();
   }
 
   public String errorPage(Integer id) {
