@@ -34,7 +34,7 @@ public class DataSourceProxyConfig {
     return new DataSourceProxy(dataSource);
   }
 
-  @Bean(name = "sqlSessionFactory")
+  @Bean
   public SqlSessionFactory sqlSessionFactoryBean(DataSourceProxy dataSourceProxy) throws Exception {
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSourceProxy);
@@ -44,7 +44,4 @@ public class DataSourceProxyConfig {
     return sqlSessionFactoryBean.getObject();
 
   }
-
-
-
 }

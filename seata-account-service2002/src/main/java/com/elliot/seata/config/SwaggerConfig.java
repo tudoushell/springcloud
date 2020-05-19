@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
   @Bean
   public Docket api() {
-    return new Docket(DocumentationType.SWAGGER_2).groupName("order")
+    return new Docket(DocumentationType.SWAGGER_2).groupName("payment")
             .genericModelSubstitutes(DeferredResult.class)
             .useDefaultResponseMessages(false)
             .forCodeGeneration(true)

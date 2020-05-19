@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 
 /**
  *  分布式事务 Seata 数据源代理配置
- *  注：1.0.0 无需手动构造数据源代理，直接使用数据源即可
+ *  需手动配置，不然的话@GobalTranscation不起作用
  */
 @Configuration
 public class DataSourceProxyConfig {
@@ -34,7 +34,7 @@ public class DataSourceProxyConfig {
     return new DataSourceProxy(dataSource);
   }
 
-  @Bean(name = "sqlSessionFactory")
+  @Bean
   public SqlSessionFactory sqlSessionFactoryBean(DataSourceProxy dataSourceProxy) throws Exception {
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSourceProxy);
@@ -44,7 +44,4 @@ public class DataSourceProxyConfig {
     return sqlSessionFactoryBean.getObject();
 
   }
-
-
-
 }

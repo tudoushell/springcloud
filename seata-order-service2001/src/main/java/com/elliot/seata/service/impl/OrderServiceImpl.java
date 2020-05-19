@@ -5,6 +5,7 @@ import com.elliot.seata.domain.Order;
 import com.elliot.seata.service.AccountService;
 import com.elliot.seata.service.OrderService;
 import com.elliot.seata.service.StorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
   private StorageService storageService;
 
   @Override
+  @GlobalTransactional(name = "order_tx", rollbackFor = Exception.class)
   public void createOrder(Order order) {
     log.info("---> 开始创建订单");
     orderDao.add(order);

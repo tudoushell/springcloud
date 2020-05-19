@@ -2,6 +2,7 @@ package com.elliot.seata.dao;
 
 
 import com.elliot.seata.domain.Order;
+import org.apache.ibatis.annotations.Param;
 
 public interface OrderDao {
   /**
@@ -9,13 +10,13 @@ public interface OrderDao {
    * @param order
    * @return
    */
-  Order add(Order order);
+  void add(Order order);
 
   /**
    * 修改订单状态
    * @param userId
    * @param status
    */
-  void update(Long userId, Integer status);
+  void update(@Param("userId") Long userId, @Param("status") Integer status);
   
 }

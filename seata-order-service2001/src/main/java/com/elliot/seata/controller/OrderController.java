@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/api/order")
-@Api(tags = "微服务订单接口")
+@Api(tags = "微服务订单接口", consumes = "application/json")
 public class OrderController {
   @Resource
   private OrderService orderService;

@@ -2,7 +2,8 @@ package com.elliot.seata.service;
 
 import com.elliot.seata.domain.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
@@ -17,6 +18,6 @@ public interface AccountService {
    * @param money
    * @return
    */
-  @PostMapping("/api/account")
-  CommonResult decreaseMoney(@RequestParam(value = "userId") Long userId, @RequestParam(value = "money") BigDecimal money);
+  @PutMapping("/api/account/{userId}")
+  CommonResult decreaseMoney(@PathVariable("userId")Long userId, @RequestParam("money") BigDecimal money);
 }

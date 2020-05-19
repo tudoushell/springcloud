@@ -10,10 +10,11 @@ spring:
         server-addr: 192.168.1.5:8081
     alibaba:
       seata:
-        tx-service-group: test_group
+        #自定义事务组名称需要与seata-server中的对应
+        tx-service-group: tx_service_group
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3305/seata_order
+    url: jdbc:mysql://localhost:3305/seata_order?verifyServerCertificate=false&useSSL=true
     username: root
     password: 123456
     
