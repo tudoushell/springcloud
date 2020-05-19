@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/account")
@@ -20,8 +19,7 @@ public class AccountController {
 
   @ApiOperation("更新账户")
   @PutMapping("/{userId}")
-  public CommonResult decreaseMoney(@PathVariable("userId")Long userId, @RequestParam("money") BigDecimal money) throws InterruptedException {
-    TimeUnit.SECONDS.sleep(2);
+  public CommonResult decreaseMoney(@PathVariable("userId") Long userId, @RequestParam("money") BigDecimal money) throws InterruptedException {
     return accountService.updateAccount(userId, money);
   }
 
